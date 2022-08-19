@@ -1,0 +1,58 @@
+<LDAP>
+	# LDAP server URL
+	URL    ldap://PDC1.advintek.com
+	# Bind DN (If your LDAP server doesn't support anonymous binds)
+	# BindDN		uid=Manager,ou=People,dc=example,dc=com
+        #BindDN   "CN=ldaptest1,OU=users,DC=advintek,DC=com"
+	BindDN  openvpn@advintek.com
+# Bind Password
+	# Password	SecretPassword
+        Password Mumb@i#123
+	# Network timeout (in seconds)
+	Timeout		15
+
+	# Enable Start TLS
+	TLSEnable	no
+
+	# Follow LDAP Referrals (anonymously)
+	FollowReferrals no
+
+	# TLS CA Certificate File
+#	TLSCACertFile	/usr/local/etc/ssl/ca.pem
+
+	# TLS CA Certificate Directory
+#	TLSCACertDir	/etc/ssl/certs
+
+	# Client Certificate and key
+	# If TLS client authentication is required
+#	TLSCertFile	/usr/local/etc/ssl/client-cert.pem
+#	TLSKeyFile	/usr/local/etc/ssl/client-key.pem
+
+	# Cipher Suite
+	# The defaults are usually fine here
+	# TLSCipherSuite	ALL:!ADH:@STRENGTH
+</LDAP>
+
+<Authorization>
+	# Base DN
+	BaseDN		"CN=users,DC=advintek,DC=com"
+
+	# User Search Filter
+	#SearchFilter	"(&(uid=%u)(accountStatus=active))"
+        #SearchFilter  "(samaccountname=%u)"
+        SearchFilter "(&(sAMAccountName=%u))"	
+# Require Group Membership
+	RequireGroup	false
+
+	# Add non-group members to a PF table (disabled)
+	#PFTable	ips_vpn_users
+
+	#<Group>
+	#	BaseDN		"ou=Groups,dc=example,dc=com"
+	#	SearchFilter	"(|(cn=developers)(cn=artists))"
+	#	MemberAttribute	uniqueMember
+	#	# Add group members to a PF table (disabled)
+	#	#PFTable	ips_vpn_eng
+	#</Group>
+</Authorization>
+
