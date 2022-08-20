@@ -1,5 +1,4 @@
 <LDAP>
-
 	# LDAP server URL
 	URL    ldap://PDC1.advintek.com
 	# Bind DN (If your LDAP server doesn't support anonymous binds)
